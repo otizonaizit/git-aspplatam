@@ -7,7 +7,11 @@ def get_credentials():
 
 #def read_pwdb():
 
-#def add_user():
+def add_user(user, password, pwdb):
+    if user not in pwdb:
+        pwdb[user] = password
+    return pwdb
+
 
 if __name__ == '__main__':
     get_credentials()

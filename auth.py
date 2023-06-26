@@ -11,8 +11,11 @@ def write_pwdb(pwdb):
         json.dump(pwdb, f)
 
 def read_pwdb():
-    with open('database.json', 'r') as f:
-        pwdb = json.load(f)
+    try:
+        with open('database.json', 'r') as f:
+            pwdb = json.load(f)
+    except FileNotFoundError:
+        pwdb = {}
     return pwdb
 
 def add_user(user, password, pwdb):
@@ -23,7 +26,6 @@ def add_user(user, password, pwdb):
 
 if __name__ == '__main__':
     pwdb = read_pwdb()
-    print(pwdb)
     user, password = get_credentials()
     add_user(user, password, pwdb)
     write_pwdb(pwdb)

@@ -5,14 +5,15 @@ def get_credentials():
     password = input('Type password: ')
     return user, password
 
-def write_pwdb(user, password):
-    pwdb = {}
-    pwdb[user] = password
+def write_pwdb(pwdb):
     fn = 'database.json'
     with open(fn, 'w') as f:
         json.dump(pwdb, f)
 
-#def read_pwdb():
+def read_pwdb():
+    with open('database.json', 'r') as f:
+        pwdb = json.load(f)
+    return pwdb
 
 def add_user(user, password, pwdb):
     if user not in pwdb:
@@ -21,5 +22,8 @@ def add_user(user, password, pwdb):
 
 
 if __name__ == '__main__':
+    pwdb = read_pwdb()
+    print(pwdb)
     user, password = get_credentials()
-    write_pwdb(user, password)
+    add_user(user, password, pwdb)
+    write_pwdb(pwdb)

@@ -1,4 +1,6 @@
+
 def get_credentials():
+    """Get credentials from user input"""
     user = input('Type user name: ')
     password = input('Type password: ')
     return user, password
